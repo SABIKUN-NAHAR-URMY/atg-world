@@ -49,7 +49,7 @@ const AllPosts = () => {
 
             <section>
                 <div className="row">
-                    <div className="col-8">
+                    <div className="col-lg-8">
                         <div className='card mb-3'>
                             <img src={image1} className="card-img-top" alt="..." />
                             <div className='m-4'>
@@ -185,7 +185,7 @@ const AllPosts = () => {
 
 
                     </div>
-                    <div className="col-4 ps-5">
+                    <div className="col-lg-4 ps-5">
                         <div className='d-flex justify-content-between'>
                             <p className='ms-5'><FaMapMarkerAlt className='me-2'></FaMapMarkerAlt>Noida, India</p>
                             <span><FaPen></FaPen></span>
@@ -203,12 +203,14 @@ const AllPosts = () => {
                             <>
                             <span className='fs-6'><FaRegHandPointRight className='me-2'></FaRegHandPointRight>RECOMMENDED GROUPS</span>
                             <div className='mt-4'>
-                                <p><img src={rec1} className='img-fluid me-5' alt="" /> <button className='border rounded-pill'>Follow</button></p>
-                                <p><img src={rec2} className='img-fluid me-5' alt="" /> <button className='border rounded-pill'>Follow</button></p>
-                                <p><img src={rec3} className='img-fluid me-5' alt="" /> <button className='border rounded-pill'>Follow</button></p>
-                                <p><img src={rec4} className='img-fluid me-5' alt="" /> <button className='border rounded-pill'>Follow</button></p>
+                                <p className='d-flex justify-content-between'><img src={rec1} className='img-fluid' alt="" /> Leisure <button className='border rounded-pill bg-dark text-white'>Followed</button></p>
+                                <p className='d-flex justify-content-between'><img src={rec2} className='img-fluid' alt="" /> Activism<button className='border rounded-pill'>Follow</button></p>
+                                <p className='d-flex justify-content-between'><img src={rec3} className='img-fluid' alt="" />MBA <button className='border rounded-pill'>Follow</button></p>
+                                <p className='d-flex justify-content-between'><img src={rec4} className='img-fluid' alt="" /> Philosophy<button className='border rounded-pill'>Follow</button></p>
                                
                             </div>
+
+                            <p className='text-primary'>See More...</p>
                             </>
                         }
                     </div>
