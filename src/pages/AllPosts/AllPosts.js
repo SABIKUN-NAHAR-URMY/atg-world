@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { FaSortDown, FaUserPlus } from "react-icons/fa";
 import image1 from '../../images/image1.png';
 import image2 from '../../images/image2.png';
@@ -7,9 +7,15 @@ import person1 from '../../images/person1.png';
 import person2 from '../../images/person2.png';
 import person3 from '../../images/person3.png';
 import person4 from '../../images/person4.png';
-import { FaRegEye, FaShareAlt, FaEllipsisH, FaCalendarDay, FaMapMarkerAlt, FaBriefcase, FaPen, FaExclamationCircle } from "react-icons/fa";
+import rec1 from '../../images/rec1.png';
+import rec2 from '../../images/rec2.png';
+import rec3 from '../../images/rec3.png';
+import rec4 from '../../images/rec4.png';
+import { FaRegEye, FaShareAlt, FaEllipsisH, FaCalendarDay, FaMapMarkerAlt, FaBriefcase, FaPen, FaExclamationCircle, FaRegHandPointRight } from "react-icons/fa";
+import { AuthContext } from '../../contexts/AuthProvider/AuthProvider';
 
 const AllPosts = () => {
+    const { user } = useContext(AuthContext);
     const style1 = { width: '48px' };
     const style2 = { height: '48px' };
 
@@ -26,7 +32,16 @@ const AllPosts = () => {
                     </div>
                     <div className='d-flex gap-3'>
                         <button type="button" className="btn btn-light"><span className='d-flex align-items-center'>Write a Post<FaSortDown className='ps-2'></FaSortDown></span> </button>
-                        <button type="button" className="btn btn-primary"><span className='d-flex align-items-center gap-2'><FaUserPlus></FaUserPlus>Join Group</span></button>
+                        {
+                            user?.uid ?
+                                <button type="button" className="btn btn-primary"><span className='d-flex align-items-center gap-2'><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-box-arrow-right" viewBox="0 0 16 16">
+                                <path fillRule="evenodd" d="M10 12.5a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-9a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 .5.5v2a.5.5 0 0 0 1 0v-2A1.5 1.5 0 0 0 9.5 2h-8A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h8a1.5 1.5 0 0 0 1.5-1.5v-2a.5.5 0 0 0-1 0v2z"/>
+                                <path fillRule="evenodd" d="M15.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 0 0-.708.708L14.293 7.5H5.5a.5.5 0 0 0 0 1h8.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3z"/>
+                              </svg>Leave Group</span></button>
+                                :
+                                <button type="button" className="btn btn-primary"><span className='d-flex align-items-center gap-2'><FaUserPlus></FaUserPlus>Join Group</span></button>
+                        }
+
                     </div>
                 </div>
                 <hr />
@@ -179,10 +194,23 @@ const AllPosts = () => {
 
                         <div className='d-flex justify-content-center'>
                             <div>
-                            <FaExclamationCircle className='me-3'></FaExclamationCircle>
+                                <FaExclamationCircle className='me-3'></FaExclamationCircle>
                             </div>
-                        <p>Your location will help us serve better and extend a personalised experience.</p>
+                            <p>Your location will help us serve better and extend a personalised experience.</p>
                         </div>
+                        {
+                            user?.uid &&
+                            <>
+                            <span className='fs-6'><FaRegHandPointRight className='me-2'></FaRegHandPointRight>RECOMMENDED GROUPS</span>
+                            <div className='mt-4'>
+                                <p><img src={rec1} className='img-fluid me-5' alt="" /> <button className='border rounded-pill'>Follow</button></p>
+                                <p><img src={rec2} className='img-fluid me-5' alt="" /> <button className='border rounded-pill'>Follow</button></p>
+                                <p><img src={rec3} className='img-fluid me-5' alt="" /> <button className='border rounded-pill'>Follow</button></p>
+                                <p><img src={rec4} className='img-fluid me-5' alt="" /> <button className='border rounded-pill'>Follow</button></p>
+                               
+                            </div>
+                            </>
+                        }
                     </div>
                 </div>
 

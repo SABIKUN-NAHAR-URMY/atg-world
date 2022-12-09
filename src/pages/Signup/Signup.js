@@ -9,93 +9,83 @@ import google from '../../images/google.png';
 const Signup = () => {
 
     const style1 = { width: '215px' };
-    const provider = new GoogleAuthProvider();
-    const { login, providerLogin, loading } = useContext(AuthContext);
+    const googleProvider = new GoogleAuthProvider();
+    const { createUser, modernizeProfile, providerSingin, loading } = useContext(AuthContext);
 
     let navigate = useNavigate();
 
-    // if (loading) {
-    //     return <div classNameName="spinner-border animate-spin inline-block w-8 h-8 border-4 rounded-full" role="status">
-    //         <span classNameName="visually-hidden">Loading...</span>
-    //     </div>
-    // }
+    if (loading) {
+        return <div className="spinner-border" role="status">
+            <span className="visually-hidden">Loading...</span>
+        </div>
+    }
 
-    // const handelLogin = event => {
-    //     event.preventDefault();
-    //     const form = event.target;
-    //     const email = form.email.value;
-    //     const password = form.password.value;
+    const handelSingup = event => {
+        event.preventDefault();
+        const form = event.target;
+        const firstname = form.firstname.value;
+        const lastname = form.lastname.value;
+        const email = form.email.value;
+        const password = form.password.value;
+        const confirmpassword = form.confirmpassword.value;
 
-    //     login(email, password)
-    //         .then(result => {
-    //             const user = result.user;
-    //             form.reset();
-    //             const currentUser = {
-    //                 email: user.email
-    //             }
-    //             //get jwt token
-    //             fetch('https://lens-queen-server.vercel.app/jwt', {
-    //                 method: 'POST',
-    //                 headers: {
-    //                     'content-type': 'application/json'
-    //                 },
-    //                 body: JSON.stringify(currentUser)
-    //             })
-    //                 .then(res => res.json())
-    //                 .then(data => {
-    //                     localStorage.setItem('token', data.token);
-    //                     navigate(from, { replace: true });
-    //                 })
-    //         })
-    //         .catch(error => console.error(error))
-    // }
+        createUser(email, password)
+        .then(result => {
+            const user = result.user;
+            form.reset();
+            handelModernizeProfile(firstname);
+            navigate('/');
+        })
+        .catch(error => {
+            console.error(error);
+        })
+    }
 
-    // const handelGoogleLogin = () => {
-    //     providerLogin(provider)
-    //         .then((result) => {
-    //             const user = result.user;
-    //             const currentUser = {
-    //                 email: user.email
-    //             }
-    //             //get jwt token
-    //             fetch('https://lens-queen-server.vercel.app/jwt', {
-    //                 method: 'POST',
-    //                 headers: {
-    //                     'content-type': 'application/json'
-    //                 },
-    //                 body: JSON.stringify(currentUser)
-    //             })
-    //                 .then(res => res.json())
-    //                 .then(data => {
-    //                     localStorage.setItem('token', data.token);
-    //                     navigate(from, { replace: true });
-    //                 })
-    //         })
-    //         .catch(error => console.error(error));
-    // }
+    const handelModernizeProfile = (name) => {
+
+        const profile = {
+            displayName: name,
+        }
+        modernizeProfile(profile)
+            .then(() => { })
+            .catch(error => console.error(error))
+
+    }
+
+    const handelGoogleSignIn = () => {
+        providerSingin(googleProvider)
+            .then(result => {
+                const user = result.user;
+                console.log(user);
+                navigate('/');
+            })
+            .catch(error => console.error(error))
+    }
     return (
         <div className='border rounded mt-4'>
             <p className='text-success bg-light fw-bold p-3 text-center'>Let's learn, share & inspire each other with our passion for computer engineering. Sign up now 🤘🏼</p>
             <div className='row mt-5 mx-5'>
                 <div className='col'>
                     <h1>Create Account</h1>
-                    <div className='d-lg-flex'>
-                    <input type="text" style={{ ...style1 }} className="form-control p-3 bg-light " id="exampleFormControlInput1" placeholder="First Name" />
+                    <form onSubmit={handelSingup}>
+                        <div className='d-lg-flex'>
+                            <input name='firstname' type="text" style={{ ...style1 }} className="form-control p-3 bg-light " id="exampleFormControlInput1" placeholder="First Name" />
 
-                    <input type="text" style={{ ...style1 }} className="form-control p-3 bg-light " id="exampleFormControlInput1" placeholder="Last Name" />
-                    </div>
-                    <input type="email" className="form-control p-3 w-75 bg-light" id="exampleFormControlInput1" placeholder="Email" />
+                            <input name='lastname' type="text" style={{ ...style1 }} className="form-control p-3 bg-light " id="exampleFormControlInput2" placeholder="Last Name" />
+                        </div>
+                        <input name='email' type="email" className="form-control p-3 w-75 bg-light" id="exampleFormControlInput3" placeholder="Email" />
 
-                    <input type="password" className="form-control p-3 w-75 bg-light" id="inputPassword" placeholder='Password' />
+                        <input name='password' type="password" className="form-control p-3 w-75 bg-light" id="inputPassword1" placeholder='Password' />
 
-                    <input type="password" className="form-control p-3 w-75 bg-light" id="inputPassword" placeholder='Confirm Password' />
+                        <input name='confirmpassword' type="password" className="form-control p-3 w-75 bg-light" id="inputPassword2" placeholder='Confirm Password' />
 
-                    <button className='btn btn-primary p-3 fw-bold mt-3 w-75 rounded-pill'>Create Account</button>
+                        <button className='btn btn-primary p-3 fw-bold mt-3 w-75 rounded-pill'>Create Account</button>
+                    </form>
                     <button className='btn btn-outline-secondary p-3 fw-bold mt-3 w-75'>
                         <img src={fb} className='img-fluid pe-3' alt="" />
                         Sign up with Facebook
                     </button>
-                    <button className='btn btn-outline-secondary p-3 fw-bold mt-3 w-75'>
+                    <button onClick={handelGoogleSignIn} className='btn btn-outline-secondary p-3 fw-bold mt-3 w-75'>
                         <img src={google} className='img-fluid pe-3' alt="" />
                         Sign up with Google
                     </button>

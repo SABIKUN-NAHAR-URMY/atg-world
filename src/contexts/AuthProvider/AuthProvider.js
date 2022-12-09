@@ -9,7 +9,7 @@ const AuthProvider = ({children}) => {
     const [user, setUser] = useState(null);
     const [loading, setLoading] = useState(true);
 
-    const providerLogin = (provider) =>{
+    const providerSingin = (provider) =>{
         setLoading(true);
         return signInWithPopup(auth, provider);
     }
@@ -19,7 +19,7 @@ const AuthProvider = ({children}) => {
         return createUserWithEmailAndPassword(auth, email, password);
     }
 
-    const login = (email, password) =>{
+    const signin = (email, password) =>{
         setLoading(true);
         return signInWithEmailAndPassword(auth, email, password);
     }
@@ -42,7 +42,7 @@ const AuthProvider = ({children}) => {
         }
     },[]);
 
-    const authInfo = {user, loading, createUser, login, logOut, providerLogin, modernizeProfile};
+    const authInfo = {user, loading, createUser, signin, logOut, providerSingin, modernizeProfile};
 
     return (
         <AuthContext.Provider value={authInfo}>

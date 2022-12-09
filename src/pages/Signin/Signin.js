@@ -8,71 +8,37 @@ import google from '../../images/google.png';
 
 const Signin = () => {
 
-
-    const provider = new GoogleAuthProvider();
-    const { login, providerLogin, loading } = useContext(AuthContext);
+    const googleProvider = new GoogleAuthProvider();
+    const { signin, providerLogin } = useContext(AuthContext);
 
     let navigate = useNavigate();
 
-    // if (loading) {
-    //     return <div classNameName="spinner-border animate-spin inline-block w-8 h-8 border-4 rounded-full" role="status">
-    //         <span classNameName="visually-hidden">Loading...</span>
-    //     </div>
-    // }
+    const handelSingin = (event) => {
+        event.preventDefault();
+        const form = event.target;
+        const email = form.email.value;
+        const password = form.password.value;
 
-    // const handelLogin = event => {
-    //     event.preventDefault();
-    //     const form = event.target;
-    //     const email = form.email.value;
-    //     const password = form.password.value;
+        signin(email, password)
+            .then(result => {
+                const user = result.user;
+                form.reset();
+                navigate('/');
+            })
+            .catch(error => {
+                console.error(error);
+            })
+    }
 
-    //     login(email, password)
-    //         .then(result => {
-    //             const user = result.user;
-    //             form.reset();
-    //             const currentUser = {
-    //                 email: user.email
-    //             }
-    //             //get jwt token
-    //             fetch('https://lens-queen-server.vercel.app/jwt', {
-    //                 method: 'POST',
-    //                 headers: {
-    //                     'content-type': 'application/json'
-    //                 },
-    //                 body: JSON.stringify(currentUser)
-    //             })
-    //                 .then(res => res.json())
-    //                 .then(data => {
-    //                     localStorage.setItem('token', data.token);
-    //                     navigate(from, { replace: true });
-    //                 })
-    //         })
-    //         .catch(error => console.error(error))
-    // }
+    const handelGoogleSignIn = () => {
+        providerLogin(googleProvider)
+            .then(result => {
+                const user = result.user;
+                console.log(user);
+            })
+            .catch(error => console.error(error))
+    }
 
-    // const handelGoogleLogin = () => {
-    //     providerLogin(provider)
-    //         .then((result) => {
-    //             const user = result.user;
-    //             const currentUser = {
-    //                 email: user.email
-    //             }
-    //             //get jwt token
-    //             fetch('https://lens-queen-server.vercel.app/jwt', {
-    //                 method: 'POST',
-    //                 headers: {
-    //                     'content-type': 'application/json'
-    //                 },
-    //                 body: JSON.stringify(currentUser)
-    //             })
-    //                 .then(res => res.json())
-    //                 .then(data => {
-    //                     localStorage.setItem('token', data.token);
-    //                     navigate(from, { replace: true });
-    //                 })
-    //         })
-    //         .catch(error => console.error(error));
-    // }
 
     return (
 
@@ -81,14 +47,19 @@ const Signin = () => {
             <div className='row mt-5 mx-5'>
                 <div className='col'>
                     <h1>Sign In</h1>
-                    <input type="email" className="form-control p-3 w-75 bg-light" id="exampleFormControlInput1" placeholder="Email" />
-                    <input type="password" className="form-control p-3 w-75 bg-light" id="inputPassword" placeholder='Password' />
-                    <button className='btn btn-primary p-3 fw-bold mt-3 w-75 rounded-pill'>Sign In</button>
+                    <form onSubmit={handelSingin}>
+                        <input name='email' type="email" className="form-control p-3 w-75 bg-light" id="exampleFormControlInput1" placeholder="Email" />
+
+                        <input name='password' type="password" className="form-control p-3 w-75 bg-light" id="inputPassword" placeholder='Password' />
+
+                        <button className='btn btn-primary p-3 fw-bold mt-3 w-75 rounded-pill'>Sign In</button>
+
+                    </form>
                     <button className='btn btn-outline-secondary p-3 fw-bold mt-3 w-75'>
                         <img src={fb} className='img-fluid pe-3' alt="" />
                         Sign in with Facebook
                     </button>
-                    <button className='btn btn-outline-secondary p-3 fw-bold mt-3 w-75'>
+                    <button onClick={handelGoogleSignIn} className='btn btn-outline-secondary p-3 fw-bold mt-3 w-75'>
                         <img src={google} className='img-fluid pe-3' alt="" />
                         Sign in with Google
                     </button>
