@@ -6,7 +6,8 @@ import image3 from '../../images/image3.png';
 import person1 from '../../images/person1.png';
 import person2 from '../../images/person2.png';
 import person3 from '../../images/person3.png';
-import { FaRegEye, FaShareAlt, FaEllipsisH, FaCalendarDay, FaMapMarkerAlt } from "react-icons/fa";
+import person4 from '../../images/person4.png';
+import { FaRegEye, FaShareAlt, FaEllipsisH, FaCalendarDay, FaMapMarkerAlt, FaBriefcase, FaPen, FaExclamationCircle } from "react-icons/fa";
 
 const AllPosts = () => {
     const style1 = { width: '48px' };
@@ -23,8 +24,8 @@ const AllPosts = () => {
                         <p>Education</p>
                         <p>Job</p>
                     </div>
-                    <div classNameName='d-flex gap-3'>
-                        <button type="button" className="btn btn-light"><span className='d-flex align-items-center'>Write a Post<FaSortDown classNameName='ps-2'></FaSortDown></span> </button>
+                    <div className='d-flex gap-3'>
+                        <button type="button" className="btn btn-light"><span className='d-flex align-items-center'>Write a Post<FaSortDown className='ps-2'></FaSortDown></span> </button>
                         <button type="button" className="btn btn-primary"><span className='d-flex align-items-center gap-2'><FaUserPlus></FaUserPlus>Join Group</span></button>
                     </div>
                 </div>
@@ -100,7 +101,7 @@ const AllPosts = () => {
 
                                         <div>
                                             <div className='border rounded bg-secondary text-center px-3 py-2'>
-                                            <FaEllipsisH></FaEllipsisH>
+                                                <FaEllipsisH></FaEllipsisH>
                                             </div>
                                             <div className='border rounded px-5'>
                                                 <p>Edit</p>
@@ -115,12 +116,7 @@ const AllPosts = () => {
                                     <div className='border border-secondary rounded'>
                                         <p className='text-center pt-1 text-danger fw-bold'>Visit Website</p>
                                     </div>
-                                    {/* <div className='mt-4 position-absolute bottom-0 end-0 border rounded'>
-                                            <p>Edit</p>
-                                            <p>Report</p>
-                                            <p>Option 3</p>
-                                        </div>
-                                     */}
+
                                 </div>
                                 <div className='d-flex justify-content-between'>
                                     <div className='d-flex'>
@@ -139,11 +135,54 @@ const AllPosts = () => {
                                 </div>
                             </div>
                         </div>
+                        <div className='card mb-3'>
+                            <div className='m-4'>
+                                <div className="card-body">
+                                    <p className='fw-bold'>💼️ Job</p>
+                                    <div className='d-flex justify-content-between'>
+                                        <h5 className="card-title">Software Developer</h5>
+                                        <FaEllipsisH></FaEllipsisH>
+                                    </div>
+                                    <p className="card-text fw-bold d-flex align-items-center"><FaBriefcase className='me-2'></FaBriefcase> Innovaccer Analytics Private Ltd.<span className='ms-5'><FaMapMarkerAlt className='me-2'></FaMapMarkerAlt>Noida, India</span></p>
+
+                                    <div className='border border-secondary rounded'>
+                                        <p className='text-center pt-1 text-success fw-bold'>Apply on Timesjobs</p>
+                                    </div>
+
+                                </div>
+                                <div className='d-flex justify-content-between'>
+                                    <div className='d-flex'>
+                                        <img className='img-fluid me-3' style={{ ...style1, ...style2 }} src={person4} alt="" />
+                                        <p className='fw-bold pt-2'>Joseph Gray</p>
+                                    </div>
+                                    <div className='d-flex justify-content-center align-items-center'>
+                                        <div className='d-flex me-5'>
+                                            <FaRegEye className='mt-1 me-3'></FaRegEye>
+                                            <p>1.4k views</p>
+                                        </div>
+                                        <div className='border rounded px-3 py-2 bg-light'>
+                                            <FaShareAlt></FaShareAlt>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
 
 
                     </div>
                     <div className="col-4 ps-5">
-                        col-4
+                        <div className='d-flex justify-content-between'>
+                            <p className='ms-5'><FaMapMarkerAlt className='me-2'></FaMapMarkerAlt>Noida, India</p>
+                            <span><FaPen></FaPen></span>
+                        </div>
+                        <hr />
+
+                        <div className='d-flex justify-content-center'>
+                            <div>
+                            <FaExclamationCircle className='me-3'></FaExclamationCircle>
+                            </div>
+                        <p>Your location will help us serve better and extend a personalised experience.</p>
+                        </div>
                     </div>
                 </div>
 
