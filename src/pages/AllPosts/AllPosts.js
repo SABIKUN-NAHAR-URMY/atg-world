@@ -23,14 +23,18 @@ const AllPosts = () => {
         <div className='mx-5 mt-5'>
             <section>
                 <div className='d-lg-flex justify-content-between'>
-                    <div className='d-flex gap-3'>
-                        <p>All Posts(32)</p>
+                    <div className='d-lg-flex d-none gap-3'>
+                        <p className='fw-bold'>All Posts(32)</p>
                         <p>Article</p>
                         <p>Event</p>
                         <p>Education</p>
                         <p>Job</p>
                     </div>
-                    <div className='d-flex gap-3'>
+                    <div className='d-flex justify-content-between align-items-center d-lg-none gap-3'>
+                        <p className='fw-bold'>Posts(368)</p>
+                        <button>Filter: All<FaSortDown></FaSortDown></button>
+                    </div>
+                    <div className='d-lg-flex d-none gap-3'>
                         <button type="button" className="btn btn-light"><span className='d-flex align-items-center'>Write a Post<FaSortDown className='ps-2'></FaSortDown></span> </button>
                         {
                             user?.uid ?
@@ -203,10 +207,10 @@ const AllPosts = () => {
                             <>
                             <span className='fs-6'><FaRegHandPointRight className='me-2'></FaRegHandPointRight>RECOMMENDED GROUPS</span>
                             <div className='mt-4'>
-                                <p className='d-flex justify-content-between'><img src={rec1} className='img-fluid' alt="" /> Leisure <button className='border rounded-pill bg-dark text-white'>Followed</button></p>
-                                <p className='d-flex justify-content-between'><img src={rec2} className='img-fluid' alt="" /> Activism<button className='border rounded-pill'>Follow</button></p>
-                                <p className='d-flex justify-content-between'><img src={rec3} className='img-fluid' alt="" />MBA <button className='border rounded-pill'>Follow</button></p>
-                                <p className='d-flex justify-content-between'><img src={rec4} className='img-fluid' alt="" /> Philosophy<button className='border rounded-pill'>Follow</button></p>
+                                <p className='d-flex justify-content-between'><div><img src={rec1} className='img-fluid' alt="" /> Leisure</div> <button className='border rounded-pill bg-dark text-white'>Followed</button></p>
+                                <p className='d-flex justify-content-between'><div><img src={rec2} className='img-fluid' alt="" /> Activism</div><button className='border rounded-pill'>Follow</button></p>
+                                <p className='d-flex justify-content-between'><div><img src={rec3} className='img-fluid' alt="" /> MBA </div><button className='border rounded-pill'>Follow</button></p>
+                                <p className='d-flex justify-content-between'><div><img src={rec4} className='img-fluid' alt="" /> Philosophy</div><button className='border rounded-pill'>Follow</button></p>
                                
                             </div>
 

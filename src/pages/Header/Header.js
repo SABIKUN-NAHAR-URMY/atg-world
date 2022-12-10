@@ -24,7 +24,7 @@ const Header = () => {
 
 
     return (
-        <nav className="navbar navbar-expand-lg navbar-light">
+        <nav className="navbar navbar-expand-lg d-none d-lg-block navbar-light">
             <div className="container-fluid">
                 <Link to={'/'} className="text-decoration-none">
                     <h1 className="navbar-brand" href="#"><span style={{ ...textColor }}>ATG.</span><span style={{ ...textColorTwo }}>W<span><img style={{ ...logoSize }} src={logo} alt="" /></span>RLD</span></h1>
@@ -34,8 +34,8 @@ const Header = () => {
                 </button>
                 <div className="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul className="navbar-nav mx-auto mb-2 mb-lg-0">
-                        <li className="nav-item">
-                            <FaSearch></FaSearch><input className='border-0 rounded-pill p-2 bg-light' style={{ ...style1 }} type="text" placeholder='Search for your favorite groups in ATG' />
+                        <li className="nav-item border-0 rounded-pill p-2 bg-light">
+                            <FaSearch></FaSearch><input className='border-0 bg-light' style={{ ...style1 }} type="text" placeholder='Search for your favorite groups in ATG' />
                         </li>
 
                     </ul>
